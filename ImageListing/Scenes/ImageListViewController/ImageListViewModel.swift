@@ -27,7 +27,7 @@ class ImageListViewModel {
         
         page += 1
         
-        return dataManager.getImages(page: page)
+        return dataManager.fetchImages(page: page)
             .do(onNext: { [weak self] images in
                 guard images.count > 0 else {
                     self?.finishedPages = true

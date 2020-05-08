@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct Image: Codable {
+struct Image: JSONConvertible {
+    
+    var type: String? = "image"
     
     var id: String
     var author: String

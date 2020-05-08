@@ -30,43 +30,76 @@ struct DataManager {
         }
     }
     
-    func getImages(page: Int, limit: Int = 10) -> Observable<[Image]> {
-        return apiManager?.getImages(page: page, limit: limit) ?? Observable.just([])
+    private func getImages(page: Int, limit: Int = 10) -> Observable<[Image]> {
+        return (self.apiManager?.getImages(page: page, limit: limit) ?? Observable.just([]))
+            .do(onNext: { images in
+                for image in images {
+                    self.databaseManager?.save(model: image)
+                        .subscribe(onError: { error in
+                            print(error)
+                        })
+                        .disposed(by: self.disposeBag)
+                }
+            })
+    }
+    
+    func fetchImages(page: Int, limit: Int = 10) -> Observable<[Image]> {
+        if page > 1 {
+            return getImages(page: page, limit: limit)
+        }
+        
+        return (databaseManager?.getAll() ?? Observable<[Image]>.just([]))
+            .flatMap { (images) -> Observable<[Image]> in
+                if images.count > 0 {
+                    return Observable.just(images)
+                }
+                
+                return self.getImages(page: page, limit: limit)
+        }
+    }
+    
+    private func getImage(url: URL) -> Observable<UIImage> {
+        let key = url.absoluteString
+        
+        return APIManager.get(url: url)
+            .do(onNext: { data in
+                self.databaseManager?.save(data: data, key: key)
+                    .subscribe(onError: { error in
+                        print(error)
+                    })
+                    .disposed(by: self.disposeBag)
+            })
+            .map { UIImage(data: $0) }
+            .compactMap { $0 }
+            .do(onNext: { image in
+                self.cacheManager.save(image, key: key)
+            })
     }
     
     func fetchImage(url: URL) -> Observable<UIImage> {
         let key = url.absoluteString
         
-        return Observable.just(cacheManager.get(key: key))
-            .flatMap { (image) -> Observable<UIImage> in
-                if let image = image {
+        if let image = cacheManager.get(key: key) {
+            return Observable.just(image)
+        }
+        
+        guard let databaseManager = databaseManager else {
+            return getImage(url: url)
+        }
+        
+        return databaseManager.get(key: key)
+            .flatMap { (data) -> Observable<UIImage> in
+                if let data = data,
+                    let image = UIImage(data: data) {
                     return Observable.just(image)
+                        .do(onNext: { image in
+                            self.cacheManager.save(image, key: key)
+                        })
                 }
                 
-                return self.databaseManager!.get(key: key)
-                    .flatMap { (data) -> Observable<UIImage> in
-                        if let data = data,
-                            let image = UIImage(data: data) {
-                            return Observable.just(image)
-                        }
-                        
-                        return APIManager.get(url: url)
-                            .do(onNext: { data in
-                                self.databaseManager?.save(data: data, key: key)
-                                    .subscribe(onError: { error in
-                                            print(error)
-                                    })
-                                    .disposed(by: self.disposeBag)
-                            })
-                            .map { UIImage(data: $0) }
-                            .compactMap { $0 }
-                }
+                return self.getImage(url: url)
         }
-        .do(onNext: { image in
-            self.cacheManager.save(image, key: key)
-        })
     }
-    
     
 }
 

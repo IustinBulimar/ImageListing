@@ -10,6 +10,7 @@
 		6FB9B1292463FCB900A313D5 /* ImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9B1282463FCB900A313D5 /* ImageListViewModel.swift */; };
 		6FB9B12B246424CE00A313D5 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9B12A246424CE00A313D5 /* DatabaseManager.swift */; };
 		6FB9B13124653EB100A313D5 /* FadeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9B13024653EB100A313D5 /* FadeFilter.swift */; };
+		6FB9B1352465850800A313D5 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9B1342465850800A313D5 /* JSONConvertible.swift */; };
 		6FCD03C02462D98F00485B5A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD03BF2462D98F00485B5A /* AppDelegate.swift */; };
 		6FCD03C92462D99000485B5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FCD03C82462D99000485B5A /* Assets.xcassets */; };
 		6FCD03CC2462D99000485B5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FCD03CA2462D99000485B5A /* LaunchScreen.storyboard */; };
@@ -32,6 +33,7 @@
 		6FB9B1282463FCB900A313D5 /* ImageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListViewModel.swift; sourceTree = "<group>"; };
 		6FB9B12A246424CE00A313D5 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		6FB9B13024653EB100A313D5 /* FadeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeFilter.swift; sourceTree = "<group>"; };
+		6FB9B1342465850800A313D5 /* JSONConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
 		6FCD03BC2462D98F00485B5A /* ImageListing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageListing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FCD03BF2462D98F00485B5A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FCD03C82462D99000485B5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				6FCD040A2462E64E00485B5A /* UITableView.swift */,
 				6FCD040B2462E64E00485B5A /* UIViewController.swift */,
 				6FB9B13024653EB100A313D5 /* FadeFilter.swift */,
+				6FB9B1342465850800A313D5 /* JSONConvertible.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				6FB9B13124653EB100A313D5 /* FadeFilter.swift in Sources */,
 				6FB9B1292463FCB900A313D5 /* ImageListViewModel.swift in Sources */,
 				6FB9B12B246424CE00A313D5 /* DatabaseManager.swift in Sources */,
+				6FB9B1352465850800A313D5 /* JSONConvertible.swift in Sources */,
 				6FCD04232462E64E00485B5A /* UIViewController.swift in Sources */,
 				6FCD03D72462E4FE00485B5A /* APIManager.swift in Sources */,
 				6FCD04422462F58000485B5A /* ImageListViewController.swift in Sources */,
