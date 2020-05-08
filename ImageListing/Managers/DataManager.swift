@@ -11,7 +11,7 @@ import RxSwift
 
 struct DataManager {
     
-    private let cacheManager = CacheManager(capacity: 100)
+    private let cacheManager = CacheManager<UIImage>(capacity: 100)
     private var databaseManager: DatabaseManager?
     private var apiManager: APIManager?
     
@@ -63,7 +63,7 @@ struct DataManager {
                 }
         }
         .do(onNext: { image in
-            self.cacheManager.save(image: image, key: key)
+            self.cacheManager.save(image, key: key)
         })
     }
     

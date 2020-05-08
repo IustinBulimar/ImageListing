@@ -9,9 +9,9 @@
 import UIKit
 import RxSwift
 
-class CacheManager {
+class CacheManager<Item: Any> {
     
-    private var cache = [String: UIImage]()
+    private var cache = [String: Item]()
     private var queue = [String]()
     
     var capacity: Int
@@ -20,7 +20,7 @@ class CacheManager {
         self.capacity = capacity
     }
 
-    func save(image: UIImage, key: String) {
+    func save(_ item: Item, key: String) {
         guard cache[key] == nil else { return }
         
         if cache.count == capacity {
@@ -29,10 +29,10 @@ class CacheManager {
         }
         
         queue.append(key)
-        cache[key] = image
+        cache[key] = item
     }
 
-    func get(key: String) -> UIImage? {
+    func get(key: String) -> Item? {
         return cache[key]
     }
     
