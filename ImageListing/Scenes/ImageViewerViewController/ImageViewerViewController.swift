@@ -37,8 +37,8 @@ class ImageViewerViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] image in
                 guard let self = self else { return }
-                self.imageWidthConstraint.constant = self.view.bounds.size.width
-                self.imageHeightConstraint.constant = self.view.bounds.size.height
+                self.imageWidthConstraint.constant = image.size.width
+                self.imageHeightConstraint.constant = image.size.height
                 self.imageView.image = image
                 }, onError: { [weak self] error in
                     self?.showError()
