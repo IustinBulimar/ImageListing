@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Image Viewer View Controller-->
+        <scene sceneID="PkC-XR-qpS">
+            <objects>
+                <viewController storyboardIdentifier="ImageViewerViewController" id="zCo-8c-O1J" customClass="ImageViewerViewController" customModule="ImageListing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q4X-RY-lZ4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yqN-av-8S1">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S91-XD-5Am">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="W8A-B0-uk1"/>
+                                            <constraint firstAttribute="height" constant="400" id="pxJ-KA-7cJ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="oSv-C7-Via" appends="YES" id="fDO-6t-zYh"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="S91-XD-5Am" secondAttribute="bottom" id="83z-RK-CIb"/>
+                                    <constraint firstAttribute="trailing" secondItem="S91-XD-5Am" secondAttribute="trailing" id="DqT-dd-xdg"/>
+                                    <constraint firstItem="S91-XD-5Am" firstAttribute="top" secondItem="yqN-av-8S1" secondAttribute="top" id="bTi-Ug-qV5"/>
+                                    <constraint firstItem="S91-XD-5Am" firstAttribute="leading" secondItem="yqN-av-8S1" secondAttribute="leading" id="p1G-as-rK6"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yqN-av-8S1" firstAttribute="leading" secondItem="aE6-ko-XRM" secondAttribute="leading" id="JWa-UT-jxI"/>
+                            <constraint firstItem="yqN-av-8S1" firstAttribute="top" secondItem="q4X-RY-lZ4" secondAttribute="top" id="dEd-w5-FV6"/>
+                            <constraint firstAttribute="bottom" secondItem="yqN-av-8S1" secondAttribute="bottom" id="iYJ-Hq-PQg"/>
+                            <constraint firstItem="yqN-av-8S1" firstAttribute="trailing" secondItem="aE6-ko-XRM" secondAttribute="trailing" id="jgv-Ip-138"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aE6-ko-XRM"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageHeightConstraint" destination="pxJ-KA-7cJ" id="E51-uv-LSO"/>
+                        <outlet property="imageView" destination="S91-XD-5Am" id="FSY-Dg-Q8J"/>
+                        <outlet property="imageWidthConstraint" destination="W8A-B0-uk1" id="gky-4p-n1X"/>
+                        <outlet property="scrollView" destination="yqN-av-8S1" id="2XV-L4-2On"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zlg-fF-HUa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="oSv-C7-Via">
+                    <connections>
+                        <action selector="didTapImageView:" destination="zCo-8c-O1J" id="Vzl-ha-1X7"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </scene>
+    </scenes>
+</document>

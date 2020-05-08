@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-ImageListing/Pods-ImageListing-frameworks.sh
+${PODS_ROOT}/CouchbaseLite/iOS/CouchbaseLite.framework
+${PODS_ROOT}/CouchbaseLite/iOS/CouchbaseLite.framework.dSYM
+${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework
+${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework
