@@ -37,7 +37,8 @@ class ImageListViewController: UIViewController, UITableViewDataSource, UITableV
     func loadNextPage() {
         viewModel.loadNextPage()
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
+            .subscribe(onNext: { [weak self] shouldReload in
+                guard shouldReload else { return }
                 self?.tableView.reloadData()
                 }, onError: { [weak self] error in
                     self?.showError()
