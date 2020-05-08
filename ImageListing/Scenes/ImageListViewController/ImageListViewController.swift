@@ -18,6 +18,8 @@ class ImageListViewController: UIViewController, UITableViewDataSource, UITableV
     
     private let disposeBag = DisposeBag()
     
+    private let fadeFilter = FadeFilter()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,16 +76,18 @@ class ImageListViewController: UIViewController, UITableViewDataSource, UITableV
         cell.url = url
         
         viewModel.loadImage(url: url)
-            .map { $0.addFilter(filter: .fade) }
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { image in
-                if url == cell.url {
-                    cell.backgroundImageView.image = image
-                }
-            }, onError: { [weak self] error in
-                self?.showError()
-                print(error)
-            })
+            .map { [weak self] image in
+                return self?.fadeFilter?.filter(image: image)
+        }
+        .observeOn(MainScheduler.instance)
+        .subscribe(onNext: { image in
+            if url == cell.url {
+                cell.backgroundImageView.image = image
+            }
+        }, onError: { [weak self] error in
+            self?.showError()
+            print(error)
+        })
             .disposed(by: disposeBag)
         
         return cell
